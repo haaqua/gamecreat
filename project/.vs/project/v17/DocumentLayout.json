@@ -27,9 +27,10 @@
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
               "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
-              "ViewState": "AgIAAIgCAAAAAAAAAAAewIUCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHgCAAAAAAAAAAD4v4UCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-25T09:25:36.09Z"
+              "WhenOpened": "2025-08-25T09:25:36.09Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -39,7 +40,7 @@
               "RelativeDocumentMoniker": "project\\project.cpp",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\gamecreat\\project\\project\\project.cpp",
               "RelativeToolTip": "project\\project.cpp",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACkAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-25T09:08:18.316Z",
               "EditorCaption": ""
