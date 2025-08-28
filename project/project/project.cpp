@@ -14,7 +14,7 @@ struct Stat stat[] =
 	{"str",0},
 	{"dex",0},
 	{"wis",0},
-	{"cha",0}
+	{"luck",0}
 };
 
 struct CLASS {
@@ -59,6 +59,30 @@ struct Class_skill class_skill[] {
 };
 struct Class_skill player_class_skill;
 
+struct ITEM {
+	const char* name;
+	const char* effect;
+};
+struct ITEM item[]{
+	{"금화","화패"},
+	{"철갑옷", "받는 데미지 -1, 민첩-1"},
+	{"일회용 죽창", "상대에게 공격시 무조건 사살,그 후 아이템 파괴"},
+	{""}
+};
+struct ITEM player_item[10];
+
+struct Monster {
+	const char* name;
+	int hp;
+	const char* skill;
+};
+struct Monster monster[]{
+	{"슬라임",8,"회복"},
+	{"오크",15,"강타"},
+	{"데스나이트",20,"오러블레이드"},
+	{"드래곤",30,"용의 숨결"}
+};
+
 void level_up(int up_stat) {
 	stat[0].value += 5;
 	up_stat += 1;
@@ -69,7 +93,7 @@ void character_creat() {
 	srand(time(NULL));
 	int hap = 0;
 	for (int j = 2; j < 6; j++) {
-		printf("주사위 굴리기 2d8 ");
+		printf("🎲주사위 굴리기 2d8 ");
 		system("pause");
 		for (int i = 0; i < 2; i++) {
 			int dice = (rand() % 8) + 1;
@@ -81,7 +105,7 @@ void character_creat() {
 		hap = 0;
 	}
 	printf("클래스를 정하시오\n");
-	printf("주사위 굴리기 1d4  ");
+	printf("🎲주사위 굴리기 1d4  ");
 	system("pause");
 	int class_dice = (rand() % 4) + 1;
 	printf("나온 수 : %d\n", class_dice);
@@ -148,9 +172,129 @@ void skill_choice() {
 	}
 }
 
+void store() {
+	printf("상점이 있습니다");
+}
+void battle(int difficult) {
+	char action;
+	int skill_used[3] = { 0,0,0 };
+	struct Monster* current;
+	printf("몬스터 출현!  ");
+	if (difficult <= 5) {
+		current = &monster[0];
+		printf("%s\n", monster[0].name);
+	}
+	else if (difficult > 5 && difficult <= 10) {
+		current = &monster[1];
+		printf("%s\n", monster[1].name);
+	}
+	else if (difficult>10 && difficult <= 15) {
+		current = &monster[2]; 
+		printf("%s\n", monster[2].name);
+	}
+	else if (difficult>15 && difficult <= 20) {
+		current = &monster[3];
+		printf("%s\n", monster[3].name);
+	}
+	current->hp += difficult;
+
+	while (current->hp > 0 && stat[0].value > 0) {
+		printf("\n행동을 선택하시오. Q : 공격, W : 스킬 사용, E : 아이템 사용, R : 상태확인\n");
+		printf("입력 : ");
+		scanf(" %c", &action);
+
+		switch (action) {
+		case 'Q':
+		case 'q':
+			printf("🎲공격 다이스 d20 : ");
+			system("pause");
+			int attack_dice = (rand() % 20) + 1;
+			printf("%d", attack_dice);
+			if (attack_dice < stat[2].value && attack_dice != 1) {
+				printf("\n데미지 다이스 d6 ");
+				system("pause");
+				int damage_dice = (rand() % 6) + 1;
+				current->hp -= damage_dice;
+			}
+			else if (attack_dice == 1) {
+				printf("!");
+				printf("\n치명타!");
+				current->hp -= 6;
+			}
+			else {
+				printf("공격 실패");
+			}
+		case'W':
+		case'w':
+			printf("스킬 목록");
+			for (int i = 0; i < 3; i++) {
+				printf("%s : %s : %s", player_skill[i].name, player_skill[i].use_stat, player_skill[i].effect);
+				if (skill_used[i]) {
+					printf("[사용완료");
+				}
+				printf("\n");
+			}
+			int skill_choice;
+			printf("1번째 스킬을 사용할려면 1, 2번째 스킬을 사용하려면 2, 3번째 스킬을 사용하려면 3을 누르시오");
+			scanf("%d", &skill_choice);
+			if (skill_choice < 0 || skill_choice>3) {
+				printf("범위를 벗어났습니다 다시 입력하세요\n");
+				break;
+			}
+			int idx = skill_choice - 1;
+			struct SKILL selected_skill = player_skill[idx];
+
+			if (strcmp(selected_skill.name, "강타") == 0) {
+				printf("강타 사용\n");
+				printf("🎲공격 다이스 d20 : ");
+				system("pause");
+				int smash_dice = (rand() % 20) + 1;
+				printf("%d", attack_dice);
+				if (attack_dice < stat[2].value && attack_dice != 1) {
+					printf("\n데미지 다이스 d6 ");
+					system("pause");
+					int damage_dice = (rand() % 6) + 1;
+					current->hp -= damage_dice;
+				}
+				else if (attack_dice == 1) {
+					printf("!");
+					printf("\n치명타!");
+					current->hp -= 6;
+				}
+				else {
+					printf("공격 실패");
+				}
+			}
+			else if (strcmp(selected_skill.name, "기절타격") == 0) {
+				printf("주사위 굴리기");
+				system("pause");
+				int faint_dice = (rand() % 20) + 1;
+				printf("기절타격 사용\n");
+			}
+		}
+	}
+
+}
+
 int main() {
 	character_creat();
 	skill_choice();
 	status_check();
+
+	while (stat[0].value != 20) {
+		printf("주사위를 굴리시오\n");
+		int action_dice = (rand() % 20 + 1);
+		system("pause");
+		printf("%d\n", action_dice);
+		if (action_dice < stat[5].value && action_dice <= 10) {
+			store();
+		}
+		system("pause");
+		if (action_dice > stat[5].value) {
+			battle(action_dice - stat[5].value);
+		}
+		system("pause");
+	}
+
 	return 0;
 }

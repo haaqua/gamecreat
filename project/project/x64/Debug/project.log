@@ -1,3 +1,6 @@
 ﻿  project.cpp
-C:\Users\Administrator\Desktop\gamecreat\project\project\project.cpp(69,12): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\gamecreat\project\project\project.cpp(92,12): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\gamecreat\project\project\project.cpp(184,13): warning C4804: '<=': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\Users\Administrator\Desktop\gamecreat\project\project\project.cpp(189,14): warning C4804: '<=': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\Users\Administrator\Desktop\gamecreat\project\project\project.cpp(194,14): warning C4804: '<=': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
   project.vcxproj -> C:\Users\Administrator\Desktop\gamecreat\project\x64\Debug\project.exe
