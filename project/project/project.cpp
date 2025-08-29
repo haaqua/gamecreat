@@ -3,6 +3,8 @@
 #include<time.h>
 #include<windows.h>
 
+#define _CRT_SECURE_NO_WARNINGS
+
 struct Stat {
 	const char* name;
 	int value;
@@ -172,13 +174,51 @@ void skill_choice() {
 	}
 }
 
+
+void use_skill_str(const char* skill_naming) {
+	printf("🎲주사위 굴리기");
+	system("pause");
+	int dice = (rand() % 20) + 1;
+	printf("주사위 : %d", dice);
+	if (stat[2].value < dice) {
+		printf("%s 사용\n",skill_naming);
+	}
+	else {
+		printf("실패");
+	}
+}
+void use_skill_dex(const char* skill_naming) {
+	printf("🎲주사위 굴리기");
+	system("pause");
+	int dice = (rand() % 20) + 1;
+	printf("주사위 : %d", dice);
+	if (stat[3].value < dice) {
+		printf("%s 사용\n", skill_naming);
+	}
+	else {
+		printf("실패");
+	}
+}
+void use_skill_wis(const char* skill_naming) {
+	printf("🎲주사위 굴리기");
+	system("pause");
+	int dice = (rand() % 20) + 1;
+	printf("주사위 : %d", dice);
+	if (stat[4].value < dice) {
+		printf("%s 사용\n", skill_naming);
+	}
+	else {
+		printf("실패");
+	}
+}
+
 void store() {
 	printf("상점이 있습니다");
 }
 void battle(int difficult) {
 	char action;
 	int skill_used[3] = { 0,0,0 };
-	struct Monster* current;
+	struct Monster* current = NULL;
 	printf("몬스터 출현!  ");
 	if (difficult <= 5) {
 		current = &monster[0];
@@ -201,11 +241,12 @@ void battle(int difficult) {
 	while (current->hp > 0 && stat[0].value > 0) {
 		printf("\n행동을 선택하시오. Q : 공격, W : 스킬 사용, E : 아이템 사용, R : 상태확인\n");
 		printf("입력 : ");
-		scanf(" %c", &action);
+		scanf_s("%c", &action, 1);
 
 		switch (action) {
 		case 'Q':
 		case 'q':
+		{
 			printf("🎲공격 다이스 d20 : ");
 			system("pause");
 			int attack_dice = (rand() % 20) + 1;
@@ -224,8 +265,11 @@ void battle(int difficult) {
 			else {
 				printf("공격 실패");
 			}
+			break;
+		}
 		case'W':
 		case'w':
+		{
 			printf("스킬 목록");
 			for (int i = 0; i < 3; i++) {
 				printf("%s : %s : %s", player_skill[i].name, player_skill[i].use_stat, player_skill[i].effect);
@@ -236,7 +280,7 @@ void battle(int difficult) {
 			}
 			int skill_choice;
 			printf("1번째 스킬을 사용할려면 1, 2번째 스킬을 사용하려면 2, 3번째 스킬을 사용하려면 3을 누르시오");
-			scanf("%d", &skill_choice);
+			scanf_s("%d", &skill_choice);
 			if (skill_choice < 0 || skill_choice>3) {
 				printf("범위를 벗어났습니다 다시 입력하세요\n");
 				break;
@@ -249,28 +293,56 @@ void battle(int difficult) {
 				printf("🎲공격 다이스 d20 : ");
 				system("pause");
 				int smash_dice = (rand() % 20) + 1;
-				printf("%d", attack_dice);
-				if (attack_dice < stat[2].value && attack_dice != 1) {
+				printf("%d", smash_dice);
+				if (smash_dice < stat[2].value && smash_dice != 1) {
 					printf("\n데미지 다이스 d6 ");
 					system("pause");
-					int damage_dice = (rand() % 6) + 1;
+					int damage_dice = ((rand() % 6) + 1) * 2;
 					current->hp -= damage_dice;
 				}
-				else if (attack_dice == 1) {
+				else if (smash_dice == 1) {
 					printf("!");
 					printf("\n치명타!");
-					current->hp -= 6;
+					current->hp -= 12;
 				}
 				else {
 					printf("공격 실패");
 				}
 			}
-			else if (strcmp(selected_skill.name, "기절타격") == 0) {
-				printf("주사위 굴리기");
-				system("pause");
-				int faint_dice = (rand() % 20) + 1;
-				printf("기절타격 사용\n");
+			else if (strcmp(selected_skill.name, "기절 타격") == 0) {
+				use_skill_str("기절 타격");
 			}
+			else if (strcmp(selected_skill.name, "갑옷 부수기") == 0) {
+				use_skill_str("갑옷 부수기");
+			}
+			else if (strcmp(selected_skill.name, "잡기") == 0) {
+				use_skill_str("잡기");
+			}
+			else if (strcmp(selected_skill.name, "연속행동") == 0) {
+				use_skill_dex("연속행동");
+			}
+			else if (strcmp(selected_skill.name, "도주") == 0) {
+				use_skill_dex("도주");
+			}
+			else if (strcmp(selected_skill.name, "은신") == 0) {
+				use_skill_dex("은신");
+			}
+			else if (strcmp(selected_skill.name, "암살") == 0) {
+				use_skill_dex("암살");
+			}
+			else if (strcmp(selected_skill.name, "분석") == 0) {
+				use_skill_wis("분석");
+			}
+			else if (strcmp(selected_skill.name, "마법 공격") == 0) {
+				use_skill_wis("마법 공격");
+			}
+			else if (strcmp(selected_skill.name, "순간이동") == 0) {
+				use_skill_wis("순간이동");
+			}
+			else if (strcmp(selected_skill.name, "힐") == 0) {
+				use_skill_wis("힐");
+			}
+		}
 		}
 	}
 
