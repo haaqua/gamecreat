@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\milkh\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\gamecreat\\project\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\gamecreat\\project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DB2791C7-48E0-49CA-BBF1-B04A51AD6AE0}|project\\project.vcxproj|C:\\Users\\milkh\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\gamecreat\\project\\project\\project.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{DB2791C7-48E0-49CA-BBF1-B04A51AD6AE0}|project\\project.vcxproj|C:\\Users\\Administrator\\Desktop\\gamecreat\\project\\project\\project.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{DB2791C7-48E0-49CA-BBF1-B04A51AD6AE0}|project\\project.vcxproj|solutionrelative:project\\project.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -24,9 +24,9 @@
               "DocumentIndex": 1,
               "Title": "stdio.h",
               "DocumentMoniker": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
               "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
               "ViewState": "AgIAAHgCAAAAAAAAAAD4v4UCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-25T09:25:36.09Z"
@@ -35,11 +35,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "project.cpp",
-              "DocumentMoniker": "C:\\Users\\milkh\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\gamecreat\\project\\project\\project.cpp",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\gamecreat\\project\\project\\project.cpp",
               "RelativeDocumentMoniker": "project\\project.cpp",
-              "ToolTip": "C:\\Users\\milkh\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\gamecreat\\project\\project\\project.cpp",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\gamecreat\\project\\project\\project.cpp",
               "RelativeToolTip": "project\\project.cpp",
-              "ViewState": "AgIAAOsAAAAAAAAAAAAQwO4AAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAA8BAAAAAAAAAAAMwCACAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-25T09:08:18.316Z",
               "EditorCaption": ""
