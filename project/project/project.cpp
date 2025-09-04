@@ -73,7 +73,7 @@ struct ITEM item[]{
 	{"회복약","hp를 1~6까지 상승한다",5},
 	{"힘의 물약","str을 1~6까지 상승한다",5},
 	{"신속의 물약","dex를 1~6까지 상승한다", 5},
-	{"지혜의 물약","wis를 1~20까지 회복한다",5},
+	{"지혜의 물약","wis를 1~6까지 상승한다",5},
 	{"마왕의 힘","영구적으로 모든 스탯을 20으로 만든다.마왕을 이길 경우 당신은 ᗪᗩᗷᗷ ᗰᗩᗯᗩᝪ Ꮍ ᗪᗴᗰᙢᔕ.ᘜᗴᎥᗰᗴOᐯᗴᖇ(뜻을 모르는 글자가 나열되어 있다)",0}
 };
 struct ITEM player_item[10];
@@ -82,10 +82,10 @@ struct ITEM player_item[10];
 struct Monster {
 	const char* name;
 	int hp;
-	const char* skill;
+	char skill[20];
 };
 struct Monster monster[]{
-	{"슬라임",8,"회복"},
+	{"슬라임",8,"자가치유"},
 	{"오크",15,"강타"},
 	{"데스나이트",20,"오러블레이드"},
 	{"드래곤",30,"드래곤 브래스"},
@@ -94,14 +94,12 @@ struct Monster monster[]{
 
 int demon_ = 0;
 
-void level_up(int up_stat) {
+void level_up() {
 	int want_stat;
-	stat[0].value += 1;
-	for (int i = 0; i < up_stat; i++) {
-		printf("원하는 스탯을 번호를 눌러 올리세요 : ");
-		scanf_s("%d", &want_stat);
-		stat[want_stat].value += 1;
-	}
+	stat[0].value += 1; 
+	printf("원하는 스탯을 번호를 눌러 올리세요\n(1~5까지 순서대로 체력, 근력, 민첩, 지능, 운)");
+	scanf_s("%d", &want_stat);
+	stat[want_stat].value += 1;
 }
 void character_creat() {
 	printf("player의 스탯을 정하시오\n");
@@ -109,7 +107,7 @@ void character_creat() {
 	srand(time(NULL));
 	int hap = 0;
 	for (int j = 2; j < 6; j++) {
-		printf("🎲주사위 굴리기 2d8 ");
+		printf("주사위 굴리기 2d8 ");
 		system("pause");
 		for (int i = 0; i < 2; i++) {
 			int dice = (rand() % 8) + 1;
@@ -190,7 +188,7 @@ void skill_choice() {
 
 int skill_success;
 void use_skill_str(const char* skill_naming) {
-	printf("🎲주사위 굴리기");
+	printf("주사위 굴리기");
 	system("pause");
 	int dice = (rand() % 20) + 1;
 	printf("주사위 : %d\n", dice);
@@ -207,7 +205,7 @@ void use_skill_str(const char* skill_naming) {
 	}
 }
 void use_skill_dex(const char* skill_naming) {
-	printf("🎲주사위 굴리기");
+	printf("주사위 굴리기");
 	system("pause");
 	int dice = (rand() % 20) + 1;
 	printf("주사위 : %d\n", dice);
@@ -224,7 +222,7 @@ void use_skill_dex(const char* skill_naming) {
 	}
 }
 void use_skill_wis(const char* skill_naming) {
-	printf("🎲주사위 굴리기");
+	printf("주사위 굴리기");
 	system("pause");
 	int dice = (rand() % 20) + 1;
 	printf("주사위 : %d\n", dice);
@@ -255,7 +253,7 @@ void holy() {
 			}
 			else if (holy_dice == 2) {
 				printf("당신은 자그마한 행운을 얻었습니다\n");
-				stat[6].value += 5;
+				stat[5].value += 5;
 			}
 			else if (holy_dice == 3) {
 				printf("당신은 나아갈 체력을 얻었습니다\n");
@@ -300,7 +298,7 @@ void store() {
 			for (int i = 0; i < 3; i++) {
 				choice[i] = rand() % store_item;
 			}
-			printf("현재 상점에 입고된 아이템은 이렇게 3개 입니다");
+			printf("현재 상점에 입고된 아이템은 이렇게 3개 입니다\n");
 			for (int i = 0; i < 3; i++) {
 				printf("%d . %s - %s (가격 : %d)\n",i+1, item[choice[i]].name, item[choice[i]].effect, item[choice[i]].cost);
 			}
@@ -379,7 +377,7 @@ void battle(int difficult) {
 	while (current->hp > 0 && stat[1].value > 0) {
 		if (!turn) {
 			holy();
-			printf("\n행동을 선택하시오. Q : 공격, W : 스킬 사용, E : 아이템 사용, R : 상태확인\n");
+			printf("\n\n행동을 선택하시오. Q : 공격, W : 스킬 사용, E : 아이템 사용, R : 상태확인\n");
 			printf("입력 : ");
 			scanf_s(" %c", &action, 1);
 
@@ -413,9 +411,16 @@ void battle(int difficult) {
 					printf("%d 데미지 !\n", damage_dice);
 					current->hp -= damage_dice;
 				}
+				if (armor_break) {
+					printf("부숴진 갑옷에 의해 상대는 데미지를 입었습니다\n");
+					int damage_dice = (rand() % 4) + 1;
+					printf("%d 데미지 \n", damage_dice);
+					current->hp -= damage_dice;
+				}
 				else {
 					printf("공격 실패");
 				}
+				hide = 0;
 				break;
 			}
 
@@ -462,6 +467,9 @@ void battle(int difficult) {
 				else if (strcmp(selected_skill.name, "기절 타격") == 0) {
 					use_skill_str("기절 타격");
 					if (skill_success) {
+						int damage_dice = ((rand() % 4) + 1) * 2;
+						printf("%d의 데미지\n", damage_dice);
+						current->hp -= damage_dice;
 						stunn = 1;
 					}
 				}
@@ -483,7 +491,7 @@ void battle(int difficult) {
 				else if (strcmp(selected_skill.name, "연속행동") == 0) {
 					use_skill_dex("연속행동");
 					if (skill_success) {
-						repeat = 1;
+						repeat = 2;
 					}
 				}
 
@@ -498,7 +506,7 @@ void battle(int difficult) {
 				else if (strcmp(selected_skill.name, "은신") == 0) {
 					use_skill_dex("은신");
 					if (skill_success) {
-						hide = 1;
+						hide = 2;
 					}
 				}
 
@@ -528,7 +536,7 @@ void battle(int difficult) {
 						system("pause");
 						int dice = (rand() % 8) + 1;
 						printf("%d의 데미지 !\n", dice);
-						current -= dice;
+						current->hp -= dice;
 					}
 				}
 
@@ -550,6 +558,7 @@ void battle(int difficult) {
 						stat[0].value += dice;
 					}
 				}
+				hide -= 1;
 				break;
 			}
 
@@ -622,11 +631,9 @@ void battle(int difficult) {
 			turn = 1;
 		}
 
-		printf("상대의 남은 체력 : %d, 내 남은 체력 : %d\n", current->hp, stat[1].value);
-
 		if (repeat) {
 			printf("추가 행동이 가능합니다");
-			repeat = 0;
+			repeat -= 1;
 			turn = 0;
 		}
 
@@ -638,6 +645,11 @@ void battle(int difficult) {
 		
 		if (turn) {
 			int monster_action = (rand() % 3) + 1;
+			if (hide == 1) {
+				printf("몬스터는 당신을 발견하지 못했다\n");
+				turn = 0;
+				continue;
+			}
 			if (monster_action > 1) {
 				printf("몬스터의 공격\n");
 				printf("회피 다이스");
@@ -672,8 +684,8 @@ void battle(int difficult) {
 				}
 			}
 			else {
-				if (strcmp(current->skill, "회복") == 0) {
-					printf("슬라임이 회복을 사용했다!\n");
+				if (strcmp(current->skill, "자가치유") == 0) {
+					printf("슬라임이 자가치유를 사용했다!\n");
 					int heal = (rand() % 4) + 1;
 					current->hp += heal;
 					printf("몬스터의 체력이 %d만큼 회복되었다\n", heal);
@@ -689,7 +701,7 @@ void battle(int difficult) {
 					else {
 						int damage = ((rand() % 6) + 1) * 2;
 						printf("오크의 공격!\n");
-						printf("%d만틈의 데미지를 받았습니다\n", damage);
+						printf("%d만큼의 데미지를 받았습니다\n", damage);
 						stat[1].value -= damage;
 					}
 				}
@@ -704,7 +716,7 @@ void battle(int difficult) {
 					else {
 						int damage = ((rand() % 20) + 1) * 2;
 						printf("데스나이트의 공격!\n");
-						printf("%d만틈의 데미지를 받았습니다\n", damage);
+						printf("%d만큼의 데미지를 받았습니다\n", damage);
 						stat[1].value -= damage;
 					}
 				}
@@ -721,23 +733,23 @@ void battle(int difficult) {
 						else {
 							int damage = ((rand() % 20) + 1);
 							printf("몬스터의 공격!\n");
-							printf("%d만틈의 데미지를 받았습니다\n", damage);
+							printf("%d만큼의 데미지를 받았습니다\n", damage);
 							stat[1].value -= damage;
 						}
-						system("pause");
 					}
 				}
 			}
 			turn = 0;
 		}
 			}
-		printf("상대의 남은 체력 : %d, 내 남은 체력 : %d\n", current->hp, stat[1].value);
 
 	if (current->hp <= 0) {
-		printf("몬스터를 쓰러트렸습니다\n");
-		printf("당신은 레밸을 올렸습니다\n");
+		printf("\n몬스터를 쓰러트렸습니다\n");
 		coin += difficult * 10;
-		level_up(difficult);
+		level_up();		
+		printf("당신은 레밸을 올렸습니다\n");
+		printf("%d만큼의 coin을 얻었습니다\n", difficult * 10);
+
 	}
 	if (stat[1].value <= 0) {
 		printf("당신은 쓰러졌습니다\n");
@@ -753,21 +765,39 @@ void battle(int difficult) {
 }
 void traning() {
 	holy();
-	printf("당신은 잠시 멈춰 훈련을 시작합니다");
-	int rand_stat_up = (rand() % 3)+1;
+	printf("당신은 잠시 아르바이트를 합니다\n");
+	printf("원하는 아르바이트를 선택하시오 1번, 2번, 3번\n");
+	int rand_stat_up;
+	scanf_s("%d", &rand_stat_up, 1);
 	if (rand_stat_up == 1) {
-		printf("당신은 짐꾼 알바로 돈을 벌었습니다. 근력을 올렸습니다");
+		printf("당신은 건설 알바로 돈을 벌었습니다. 근력을 올렸습니다\n");
 		stat[2].value += 1;
+		int earn_coin = ((rand() % 10) + 1)*5;
+		coin += earn_coin;
+		printf("%d 만큼의 coin을 얻었습니다\n", earn_coin);
 	}
-	else if (rand_stat_up == 2) {
-		printf("당신은 열심히 수련해서 민첩을 올렸습니다");
+	if (rand_stat_up == 2) {
+		printf("당신은 배달 알바로 돈을 벌었습니다. 민첩을 올렸습니다\n");
 		stat[3].value += 1;
+		int earn_coin = ((rand() % 10) + 1) * 5;
+		coin += earn_coin;
+		printf("%d 만큼의 coin을 얻었습니다\n", earn_coin);
+
 	}	
-	else if (rand_stat_up == 3) {
-		printf("당신은 열심히 수련해서 지능을 올렸습니다");
-		stat[3].value += 1;
+	if (rand_stat_up == 3) {
+		printf("당신은 건설 알바로 돈을 벌었습니다. 지능을 올렸습니다\n");
+		stat[4].value += 1;
+		int earn_coin = ((rand() % 10) + 1) * 5;
+		coin += earn_coin;
+		printf("%d 만큼의 coin을 얻었습니다\n", earn_coin);
+
 	}
 	stat[0].value += 1;
+}
+void break_time() {
+	printf("당신은 오랜만에 쉬었다\n");
+	stat[1].value += 10;
+	printf("hp가 10 회복되었다\n");
 }
 
 int main() {
@@ -776,12 +806,18 @@ int main() {
 	status_check();
 
 	while (stat[0].value != 20) {
-		printf("주사위를 굴리시오\n");
+		printf("\n주사위를 굴리시오\n");
 		int action_dice = (rand() % 20 + 1);
 		system("pause");
 		printf("%d\n", action_dice);
-		if (action_dice < stat[5].value && action_dice <= 10) {
+		if (action_dice <= stat[5].value && action_dice > 10) {
 			store();
+		}
+		if (action_dice <= stat[5].value && action_dice <= 5 ) {
+			break_time();
+		}
+		if (action_dice <= stat[5].value && action_dice <= 10) {
+			traning();
 		}
 		else if (action_dice > stat[5].value) {
 			battle(action_dice);
@@ -795,16 +831,16 @@ int main() {
 	}
 	printf("당신은 마왕을 죽이고 이 세상의 평화를 가져왔습니다\n");
 	if (demon_ == 0) {
-		printf("HAPPY END");
+		printf("                    HAPPY END");
 	}
 	else if (demon_ >= 1) {
-		printf("HAPPY END?");
+		printf("                    HAPPY END?");
 		system("pause");
 		printf("당신은 마왕과 싸웠던 마지막 장소에 와 있습니다\n");
 		printf("당신은 마왕이 앉았던 그 왕좌에 앉았습니다\n");
 		printf("당신의 몸에 있는 씨앗은 결국 피어났습니다\n\n");
 		printf("당신은 마왕이 되었습니다\n\n");
-		printf("                     BAD END                 ");
+		printf("                     BAD END");
 	}
 	return 0;
 }

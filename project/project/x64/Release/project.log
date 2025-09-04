@@ -1,0 +1,30 @@
+﻿  project.cpp
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u15EA'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u15E9'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u15F7'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u15F0'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u15EF'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u176A'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u13BD'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u15F4'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u1662'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u1515'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u161C'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u13A5'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u142F'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(77,19): warning C4566: 유니버설 문자 이름 '\u1587'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(107,12): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(122,9): warning C4566: 유니버설 문자 이름 '\U0001F3B2'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(297,14): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(289,14): warning C4101: 'store_item' :참조되지 않은 지역 변수입니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(389,12): warning C4566: 유니버설 문자 이름 '\U0001F3B2'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(447,13): warning C4566: 유니버설 문자 이름 '\U0001F3B2'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(770,31): warning C4474: 'scanf_s' : 서식 문자열에 전달된 인수가 너무 많습니다.
+      C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\project\project.cpp(770,31):
+      자리 표시자 및 해당 매개 변수에는 variadic 인수가 1개 필요하지만 2개가 제공되었습니다.
+  
+  코드를 생성하고 있습니다.
+  Previous IPDB not found, fall back to full compilation.
+  All 21 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  project.vcxproj -> C:\Users\milkh\OneDrive\바탕 화면\gamecreat\project\x64\Release\project.exe
